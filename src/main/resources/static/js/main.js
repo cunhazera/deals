@@ -27,7 +27,7 @@ $("#submit").click(function(e) {
         contentType: "application/json; charset=utf-8",
         success: function(data){
             if (negotiations == 1) {
-                
+                processDeals(data, 0, '#list');
             } else if (negotiations == 2) {
                 processTotalUnmoved(data, 0, '#list');
             }
@@ -42,20 +42,22 @@ function processTotalUnmoved(items, level, element) {
     if ($('#list').text().trim() != '') {
         document.getElementById('list').innerHTML = '';
     }
-    $(element).append('<ul></ul>');
+    $(element).append('<ul>');
     for (var i = 0; i<items.length; i++ ) {
-        $(element + '> ul' ).append('<li class="' + level + '-' + i + '"> <img height="10" width="10" style="background:' + items[i].stage +'">' + (items[i].stage ? items[i].stage : items[i].stage) + '<span style="float:right">'+ (items[i].totalInStages ? items[i].totalInStages : "") +'</span></li>');
+        $(element + '> ul' ).append('<li><p>'+items[i].stage+':'+ items[i].totalInStages + '</p></li>');
     }
+    $(element).append('</ul>');
 }
 
 function processDeals(items, level, element) {
     if ($('#list').text().trim() != '') {
         document.getElementById('list').innerHTML = '';
     }
-    $(element).append('<ul></ul>');
+
     for (var i = 0; i<items.length; i++ ) {
-        $(element + '> ul' ).append('<li class="' + level + '-' + i + '"> <img height="10" width="10" style="background:'
+        $(element + '> ul' ).append('<li class="' + level + '-' + i + '"> <p>'
             + items[i].userName +'">' + (items[i].userName ? items[i].userName : items[i].userName) +
             '<span style="float:right">'+ (items[i].dealName ? items[i].dealName : "") +'</span></li>');
     }
+    $(element).append('</ul>');
 }

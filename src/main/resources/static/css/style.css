@@ -20,3 +20,20 @@
 .datepick {
 	margin-top: 10px;
 }
+
+#list {
+	margin-top: 10px;
+}
+
+#list ul {
+	list-style: none;
+	text-align: center;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding: 10px 0;
+}
+
+#list ul li {
+	padding: 0 10px;
+	
+}
