@@ -1,0 +1,22 @@
+.custom-select {
+	width: auto;
+}
+
+#description {
+	text-align: center;
+	font-size: 18px;
+	width: 100%;
+	margin-top: 40px;
+}
+
+#send {
+	margin-top: 10px;
+}
+
+.form-control {
+	width: auto;
+}
+
+.datepick {
+	margin-top: 10px;
+}
