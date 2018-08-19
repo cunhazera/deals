@@ -44,7 +44,7 @@ function processTotalUnmoved(items, level, element) {
     }
     $(element).append('<ul>');
     for (var i = 0; i<items.length; i++ ) {
-        $(element + '> ul' ).append('<li><p>'+items[i].stage+':'+ items[i].totalInStages + '</p></li>');
+        $(element).append('<li><p>'+items[i].stage+':'+ items[i].totalInStages + '</p></li>');
     }
     $(element).append('</ul>');
 }
@@ -53,11 +53,20 @@ function processDeals(items, level, element) {
     if ($('#list').text().trim() != '') {
         document.getElementById('list').innerHTML = '';
     }
-
+    $(element).append('<ul>');
     for (var i = 0; i<items.length; i++ ) {
-        $(element + '> ul' ).append('<li class="' + level + '-' + i + '"> <p>'
-            + items[i].userName +'">' + (items[i].userName ? items[i].userName : items[i].userName) +
-            '<span style="float:right">'+ (items[i].dealName ? items[i].dealName : "") +'</span></li>');
+        $(element).append('<li><p>'+items[i].id +'|'+ items[i].dealName + '|' + items[i].status + '|' + items[i].userName + '</p></li>');
     }
     $(element).append('</ul>');
 }
+
+var activities = document.getElementById("select1");
+
+activities.addEventListener("click", function() {
+    var options = activities.querySelectorAll("option");
+    var count = options.length;
+    if(typeof(count) === "undefined" || count < 2)
+    {
+        console.log("aaaaaaaaaaaaaaaaaa");
+    }
+});

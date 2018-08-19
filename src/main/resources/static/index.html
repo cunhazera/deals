@@ -31,7 +31,7 @@
 	</div>
 
 	<div id="negotiations" align="center">
-		<select class="custom-select justify-content-between">
+		<select id="select1" class="custom-select justify-content-between">
 			<option selected></option>
 			<option value="1">Todas as negociações no período</option>
 			<option value="2">Apenas negociações não movimentadas</option>
@@ -49,7 +49,10 @@
 				minDate: new Date(2017, 1 - 1, 1),
 				maxDate: new Date(2017, 12 - 1 , 31)
 			});
-			$('#datepicker2').datepicker();
+			$('#datepicker2').datepicker({
+				minDate: new Date(2017, 1 - 1, 1),
+				maxDate: new Date(2017, 12 - 1 , 31)
+			});
 		});
 	</script>
 
