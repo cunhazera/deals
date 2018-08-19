@@ -27,7 +27,7 @@ $("#submit").click(function(e) {
         contentType: "application/json; charset=utf-8",
         success: function(data){
             if (negotiations == 1) {
-                processDeals(data, 0, '#list');
+                processDeals(data, 0, '#deals');
             } else if (negotiations == 2) {
                 processTotalUnmoved(data, 0, '#list');
             }
@@ -42,9 +42,10 @@ function processTotalUnmoved(items, level, element) {
     if ($('#list').text().trim() != '') {
         document.getElementById('list').innerHTML = '';
     }
-    $(element).append('<ul>');
+    $(element).append('<ul class="list-group">');
     for (var i = 0; i<items.length; i++ ) {
-        $(element).append('<li><p>'+items[i].stage+':'+ items[i].totalInStages + '</p></li>');
+        $(element).append('<li class="list-group-item d-flex justify-content-between align-items-center">'+items[i].stage+
+            '<span class="badge badge-primary badge-pill">'+items[i].totalInStages+'</span></li>');
     }
     $(element).append('</ul>');
 }
@@ -53,20 +54,15 @@ function processDeals(items, level, element) {
     if ($('#list').text().trim() != '') {
         document.getElementById('list').innerHTML = '';
     }
-    $(element).append('<ul>');
+
+    $(element).append('<thead> <tr> <th scope="col">Linha</th> <th scope="col">ID</th> <th scope="col">Negociação</th> <th scope="col">Status</th> <th scope="col">Usuário</th> </tr> </thead>');
+    $(element).append('<tbody>');
+    var markup = "<tr><th scope='row'>${nrow}</th><td>${id}</td><td>${id}</td><td>${status}</td><td>${user}</td></tr>";
+
     for (var i = 0; i<items.length; i++ ) {
-        $(element).append('<li><p>'+items[i].id +'|'+ items[i].dealName + '|' + items[i].status + '|' + items[i].userName + '</p></li>');
+        $.tmpl(markup, { "nrow" : i +1, "id":items[i].id, "deal":items[i].dealName, "status":items[i].status, "user":items[i].userName  }).appendTo(element);
     }
-    $(element).append('</ul>');
+    $(element).append('</tbody>');
+    
 }
 
-var activities = document.getElementById("select1");
-
-activities.addEventListener("click", function() {
-    var options = activities.querySelectorAll("option");
-    var count = options.length;
-    if(typeof(count) === "undefined" || count < 2)
-    {
-        console.log("aaaaaaaaaaaaaaaaaa");
-    }
-});
