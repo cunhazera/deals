@@ -51,8 +51,8 @@ function processTotalUnmoved(items, level, element) {
 }
 
 function processDeals(items, level, element) {
-    if ($('#list').text().trim() != '') {
-        document.getElementById('list').innerHTML = '';
+    if ($('#deals').text().trim() != '') {
+        document.getElementById('deals').innerHTML = '';
     }
 
     $(element).append('<thead> <tr> <th scope="col">Linha</th> <th scope="col">ID</th> <th scope="col">Negociação</th> <th scope="col">Status</th> <th scope="col">Usuário</th> </tr> </thead>');
