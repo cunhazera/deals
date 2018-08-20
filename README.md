@@ -2,7 +2,7 @@
 
 ## Here is the link to access it at Heroku: https://guarded-wildwood-81858.herokuapp.com/
 
-## Important: the date format at database is being searched as mm/dd/yyyy
+## Important: the date format at database is being searched as yyyy/mm/dd
 
 ## Do you want to run it locally?
 
