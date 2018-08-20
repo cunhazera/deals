@@ -1,4 +1,7 @@
+var myIntervals = [];
+
 $("#submit").click(function(e) {
+    clearAllIntervals();
     var stage = $("#stage").val();
     var initial = $("#datepicker1").val();
     var end = $("#datepicker2").val();
@@ -20,6 +23,10 @@ $("#submit").click(function(e) {
     }
 
     request(url, negotiations);
+    myIntervals[myIntervals.length] = setInterval(function() {
+        request(url, negotiations);
+    }, 5000);
+
 });
 
 function processTotalUnmoved(items, level, element) {
@@ -35,15 +42,15 @@ function processTotalUnmoved(items, level, element) {
 function processDeals(items, level, element) {
     clearHtml();
 
-    $(element).append('<thead> <tr> <th scope="col">Linha</th> <th scope="col">ID</th> <th scope="col">Negociação</th> <th scope="col">Status</th> <th scope="col">Usuário</th> </tr> </thead>');
+    $(element).append('<thead> <tr> <th scope="col">Linha</th> <th scope="col">ID</th> <th scope="col">Negociação</th> <th scope="col">Status</th> <th scope="col">Usuário</th> <th scope="col">Data de atualização</th> </tr> </thead>');
     $(element).append('<tbody>');
-    var markup = "<tr><th scope='row'>${nrow}</th><td>${id}</td><td>${id}</td><td>${status}</td><td>${user}</td></tr>";
+    var markup = "<tr><th scope='row'>${nrow}</th><td>${id}</td><td>${deal}</td><td>${status}</td><td>${user}</td><td>${updateDate}</td></tr>";
 
     for (var i = 0; i<items.length; i++ ) {
-        $.tmpl(markup, { "nrow" : i +1, "id":items[i].id, "deal":items[i].dealName, "status":items[i].status, "user":items[i].userName  }).appendTo(element);
+        $.tmpl(markup, { "nrow" : i + 1, "id":items[i].id, "deal":items[i].dealName, "status":items[i].status, "user":items[i].userName, "updateDate":items[i].updateDate }).appendTo(element);
     }
     $(element).append('</tbody>');
-    
+
 }
 
 function clearHtml() {
@@ -73,4 +80,10 @@ function request(url, negotiations) {
             console.log("naaaaaaaao");
         }
     });
+}
+
+function clearAllIntervals() {
+    for (x=0; x<myIntervals.length; x++) {
+        clearTimeout(myIntervals[x]);
+    }
 }
