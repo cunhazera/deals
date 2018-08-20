@@ -19,10 +19,7 @@ $("#submit").click(function(e) {
         url = '/api/deals/unmoved?initial=' + initialWeek + '&end=' + endWeek + '&stage=' + stage;
     }
 
-    setInterval(function() {
-        request(url, negotiations);
-    }, 5000);
-
+    request(url, negotiations);
 });
 
 function processTotalUnmoved(items, level, element) {
