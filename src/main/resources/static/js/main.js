@@ -77,7 +77,7 @@ function request(url, negotiations) {
             }
         },
         error: function(){
-            console.log("naaaaaaaao");
+            console.log("error");
         }
     });
 }
